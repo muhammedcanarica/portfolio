@@ -1,0 +1,47 @@
+
+> can-arica-portfolio@0.1.0 dev
+> vite --host 127.0.0.1 --port 5173
+
+
+  [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m339[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m5173[22m/[39m
+[2m01:08:19[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.jsx[22m
+[2m01:08:19[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Hero.jsx[22m
+[2m01:08:19[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Contact.jsx[22m
+[2m01:08:19[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m01:10:45[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mindex.html[22m
+[2m01:10:45[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.jsx[22m
+[2m01:10:45[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Hero.jsx[22m
+[2m01:10:46[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/About.jsx[22m
+[2m01:10:46[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m01:11:08[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.jsx[22m
+[2m01:12:34[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Hero.jsx[22m
+[2m01:12:34[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m01:13:43[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m01:18:52[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Hero.jsx[22m
+[2m01:18:52[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m01:25:27[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.jsx[22m
+[2m01:25:27[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Hero.jsx[22m
+[2m01:25:27[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FocusAreas.jsx[22m
+[2m01:25:28[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Projects.jsx[22m
+[2m01:25:28[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Process.jsx[22m
+[2m01:25:28[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Skills.jsx[22m
+[2m01:25:28[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/About.jsx[22m
+[2m01:25:29[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Contact.jsx[22m
+[2m01:25:29[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Projects.jsx[22m
+[2m01:25:51[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mindex.html[22m
+[2m01:25:51[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m01:27:22[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx[22m
+[2m01:27:22[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.jsx[22m
+[2m01:33:31[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx[22m
+[2m01:33:32[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.jsx[22m
+[2m01:33:32[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Hero.jsx[22m
+[2m01:33:32[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FocusAreas.jsx[22m
+[2m01:33:33[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Projects.jsx[22m
+[2m01:33:33[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Skills.jsx[22m
+[2m01:33:33[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/About.jsx[22m
+[2m01:33:33[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Contact.jsx[22m
+[2m01:34:31[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Projects.jsx[22m
+[2m01:34:52[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mindex.html[22m
+[2m01:34:53[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
