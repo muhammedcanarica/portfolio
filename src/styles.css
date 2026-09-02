@@ -833,13 +833,13 @@ h3 {
   --assistant-mascot-size: 108px;
   --assistant-drag-rotation: 0deg;
   --assistant-drag-scale: 1;
-  --assistant-drag-offset-y: 0px;
   --assistant-panel-offset-x: 0px;
   --assistant-panel-offset-y: -360px;
 }
 
 .assistant-mascot {
   width: var(--assistant-mascot-size);
+  height: var(--assistant-mascot-size);
   min-width: 48px;
   min-height: 48px;
   padding: 0;
@@ -866,16 +866,17 @@ h3 {
 
 .assistant-mascot-body {
   display: block;
-  transform: translate3d(0, var(--assistant-drag-offset-y), 0)
-    rotate(var(--assistant-drag-rotation)) scale(var(--assistant-drag-scale));
-  transform-origin: 50% 18%;
+  width: 100%;
+  height: 100%;
+  transform: rotate(var(--assistant-drag-rotation)) scale(var(--assistant-drag-scale));
+  transform-origin: 50% 25%;
   transition: transform 220ms cubic-bezier(0.22, 0.72, 0.24, 1);
 }
 
 .assistant-mascot img {
   display: block;
   width: 100%;
-  aspect-ratio: 1;
+  height: 100%;
   object-fit: contain;
   animation: assistant-float 4.6s ease-in-out infinite;
 }
@@ -891,6 +892,11 @@ h3 {
 .assistant-dragging .assistant-mascot img {
   animation: none;
   transform: none;
+}
+
+.assistant-dragging .assistant-mascot-dragging img {
+  animation: assistant-drag-wiggle 260ms ease-in-out infinite alternate;
+  transform-origin: 50% 25%;
 }
 
 .assistant-mascot-bye img {
@@ -1140,6 +1146,11 @@ h3 {
   to { opacity: 0.5; transform: translateY(5px) scale(0.96); }
 }
 
+@keyframes assistant-drag-wiggle {
+  from { transform: translateY(-1px) rotate(-1.5deg); }
+  to { transform: translateY(2px) rotate(1.5deg); }
+}
+
 @keyframes assistant-panel-in {
   from { opacity: 0; transform: translateY(10px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
@@ -1163,6 +1174,7 @@ h3 {
 
   .assistant-mascot {
     width: var(--assistant-mascot-size);
+    height: var(--assistant-mascot-size);
   }
 
   .assistant-panel {

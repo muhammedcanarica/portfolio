@@ -13,9 +13,10 @@ const characterImages = {
   talking: `${assistantAssetPath}talking.png`,
   happy: `${assistantAssetPath}happy.png`,
   bye: `${assistantAssetPath}bye.png`,
+  dragging: `${assistantAssetPath}dragging.png`,
 };
 
-const DRAG_THRESHOLD = 7;
+const DRAG_THRESHOLD = 2;
 const SAFE_MARGIN = 12;
 
 const clamp = (value, minimum, maximum) =>
@@ -28,15 +29,12 @@ function PortfolioAssistant({ language }) {
   const assistantRef = useRef(null);
   const mascotRef = useRef(null);
   const panelRef = useRef(null);
-  const animationFrame = useRef(0);
-  const prefersReducedMotion = useRef(false);
   const suppressClick = useRef(false);
   const drag = useRef({
     activePointerId: null,
-    current: { x: 0, y: 0, rotation: 0, scale: 1, offsetY: 0 },
-    target: { x: 0, y: 0, rotation: 0, scale: 1, offsetY: 0 },
+    x: 0,
+    y: 0,
     hasMoved: false,
-    initialized: false,
     lastPointerX: 0,
     startPointerX: 0,
     startPointerY: 0,
@@ -91,61 +89,21 @@ function PortfolioAssistant({ language }) {
     assistant.style.setProperty("--assistant-panel-offset-y", `${panelY - y}px`);
   };
 
-  const applyVisualState = (state) => {
+  const applyVisualState = ({ x, y, rotation = 0, scale = 1 }) => {
     const assistant = assistantRef.current;
     if (!assistant) {
       return;
     }
 
-    assistant.style.transform = `translate3d(${state.x.toFixed(2)}px, ${state.y.toFixed(2)}px, 0)`;
-    assistant.style.setProperty("--assistant-drag-rotation", `${state.rotation.toFixed(2)}deg`);
-    assistant.style.setProperty("--assistant-drag-scale", state.scale.toFixed(3));
-    assistant.style.setProperty("--assistant-drag-offset-y", `${state.offsetY.toFixed(2)}px`);
-    updatePanelPosition(state.x, state.y);
-  };
-
-  const animate = () => {
-    const state = drag.current;
-    if (!assistantRef.current) {
-      animationFrame.current = 0;
-      return;
-    }
-
-    const smoothing = prefersReducedMotion.current ? 1 : 0.18;
-    if (state.activePointerId === null) {
-      state.target.rotation *= prefersReducedMotion.current ? 0 : 0.8;
-      state.target.scale = 1;
-      state.target.offsetY = 0;
-    }
-
-    state.current.x += (state.target.x - state.current.x) * smoothing;
-    state.current.y += (state.target.y - state.current.y) * smoothing;
-    state.current.rotation += (state.target.rotation - state.current.rotation) * smoothing;
-    state.current.scale += (state.target.scale - state.current.scale) * smoothing;
-    state.current.offsetY += (state.target.offsetY - state.current.offsetY) * smoothing;
-
-    applyVisualState(state.current);
-
-    const isSettled = ["x", "y", "rotation", "scale", "offsetY"].every(
-      (key) => Math.abs(state.target[key] - state.current[key]) < 0.2,
-    );
-
-    if (state.activePointerId !== null || !isSettled) {
-      animationFrame.current = window.requestAnimationFrame(animate);
-    } else {
-      animationFrame.current = 0;
-    }
-  };
-
-  const requestAnimation = () => {
-    if (!animationFrame.current) {
-      animationFrame.current = window.requestAnimationFrame(animate);
-    }
+    assistant.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
+    assistant.style.setProperty("--assistant-drag-rotation", `${rotation.toFixed(2)}deg`);
+    assistant.style.setProperty("--assistant-drag-scale", scale.toFixed(3));
+    updatePanelPosition(x, y);
   };
 
   const savePosition = () => {
     try {
-      const { x, y } = drag.current.target;
+      const { x, y } = drag.current;
       sessionStorage.setItem("portfolio-assistant-position", JSON.stringify({ x, y }));
     } catch {
       // Position persistence is optional when browser storage is unavailable.
@@ -166,15 +124,6 @@ function PortfolioAssistant({ language }) {
   };
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updateMotionPreference = () => {
-      prefersReducedMotion.current = mediaQuery.matches;
-      requestAnimation();
-    };
-
-    updateMotionPreference();
-    mediaQuery.addEventListener("change", updateMotionPreference);
-
     let savedPosition;
     try {
       savedPosition = JSON.parse(sessionStorage.getItem("portfolio-assistant-position"));
@@ -191,19 +140,15 @@ function PortfolioAssistant({ language }) {
         ? savedPosition.y
         : window.innerHeight - mascotSize - 20,
     );
-    drag.current.current = { ...drag.current.current, ...initialPosition };
-    drag.current.target = { ...drag.current.target, ...initialPosition };
-    drag.current.initialized = true;
-    applyVisualState(drag.current.current);
-    requestAnimation();
+    drag.current.x = initialPosition.x;
+    drag.current.y = initialPosition.y;
+    applyVisualState(drag.current);
 
     const handleViewportChange = () => {
-      const currentPosition = clampPosition(drag.current.current.x, drag.current.current.y);
-      const targetPosition = clampPosition(drag.current.target.x, drag.current.target.y);
-      drag.current.current = { ...drag.current.current, ...currentPosition };
-      drag.current.target = { ...drag.current.target, ...targetPosition };
-      applyVisualState(drag.current.current);
-      requestAnimation();
+      const position = clampPosition(drag.current.x, drag.current.y);
+      drag.current.x = position.x;
+      drag.current.y = position.y;
+      applyVisualState(drag.current);
     };
 
     window.addEventListener("resize", handleViewportChange);
@@ -211,10 +156,8 @@ function PortfolioAssistant({ language }) {
 
     return () => {
       clearTimers();
-      mediaQuery.removeEventListener("change", updateMotionPreference);
       window.removeEventListener("resize", handleViewportChange);
       window.removeEventListener("orientationchange", handleViewportChange);
-      window.cancelAnimationFrame(animationFrame.current);
     };
   }, []);
 
@@ -251,8 +194,7 @@ function PortfolioAssistant({ language }) {
   }, [isOpen]);
 
   useLayoutEffect(() => {
-    applyVisualState(drag.current.current);
-    requestAnimation();
+    applyVisualState(drag.current);
   }, [isOpen]);
 
   const openAssistant = () => {
@@ -315,65 +257,69 @@ function PortfolioAssistant({ language }) {
     state.startPointerX = event.clientX;
     state.startPointerY = event.clientY;
     state.lastPointerX = event.clientX;
-    state.startX = state.current.x;
-    state.startY = state.current.y;
-    state.target.x = state.current.x;
-    state.target.y = state.current.y;
-    event.currentTarget.setPointerCapture(event.pointerId);
+    state.startX = state.x;
+    state.startY = state.y;
   };
 
-  const handlePointerMove = (event) => {
-    const state = drag.current;
-    if (state.activePointerId !== event.pointerId) {
-      return;
-    }
+  useEffect(() => {
+    const handlePointerMove = (event) => {
+      const state = drag.current;
+      if (state.activePointerId !== event.pointerId) {
+        return;
+      }
 
-    const offsetX = event.clientX - state.startPointerX;
-    const offsetY = event.clientY - state.startPointerY;
-    if (!state.hasMoved && Math.hypot(offsetX, offsetY) < DRAG_THRESHOLD) {
-      return;
-    }
+      const offsetX = event.clientX - state.startPointerX;
+      const offsetY = event.clientY - state.startPointerY;
+      if (!state.hasMoved && Math.hypot(offsetX, offsetY) < DRAG_THRESHOLD) {
+        return;
+      }
 
-    if (!state.hasMoved) {
-      state.hasMoved = true;
-      setIsDragging(true);
-    }
+      if (!state.hasMoved) {
+        state.hasMoved = true;
+        setIsDragging(true);
+      }
 
-    event.preventDefault();
-    const targetPosition = clampPosition(state.startX + offsetX, state.startY + offsetY);
-    const horizontalVelocity = event.clientX - state.lastPointerX;
-    state.target.x = targetPosition.x;
-    state.target.y = targetPosition.y;
-    state.target.rotation = prefersReducedMotion.current
-      ? 0
-      : clamp(horizontalVelocity * 0.45, -6, 6);
-    state.target.scale = prefersReducedMotion.current ? 1 : 0.975;
-    state.target.offsetY = prefersReducedMotion.current ? 0 : 3;
-    state.lastPointerX = event.clientX;
-    requestAnimation();
-  };
+      event.preventDefault();
+      const position = clampPosition(state.startX + offsetX, state.startY + offsetY);
+      const horizontalVelocity = event.clientX - state.lastPointerX;
+      state.x = position.x;
+      state.y = position.y;
+      state.lastPointerX = event.clientX;
+      applyVisualState({
+        ...state,
+        rotation: clamp(horizontalVelocity * 0.45, -5, 5),
+        scale: 0.97,
+      });
+    };
 
-  const finishPointerInteraction = (event) => {
-    const state = drag.current;
-    if (state.activePointerId !== event.pointerId) {
-      return;
-    }
+    const finishPointerInteraction = (event) => {
+      const state = drag.current;
+      if (state.activePointerId !== event.pointerId) {
+        return;
+      }
 
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    }
+      state.activePointerId = null;
+      if (state.hasMoved) {
+        suppressClick.current = true;
+        setIsDragging(false);
+        savePosition();
+        window.requestAnimationFrame(() => applyVisualState(drag.current));
+        window.setTimeout(() => {
+          suppressClick.current = false;
+        }, 0);
+      }
+    };
 
-    state.activePointerId = null;
-    state.target.rotation = 0;
-    state.target.scale = 1;
-    state.target.offsetY = 0;
-    if (state.hasMoved) {
-      suppressClick.current = true;
-      setIsDragging(false);
-      savePosition();
-      requestAnimation();
-    }
-  };
+    window.addEventListener("pointermove", handlePointerMove, { passive: false });
+    window.addEventListener("pointerup", finishPointerInteraction);
+    window.addEventListener("pointercancel", finishPointerInteraction);
+
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerup", finishPointerInteraction);
+      window.removeEventListener("pointercancel", finishPointerInteraction);
+    };
+  }, []);
 
   const handleMascotClick = () => {
     if (suppressClick.current) {
@@ -390,6 +336,7 @@ function PortfolioAssistant({ language }) {
 
   const isThinking = selectedQuestion && characterState === "thinking";
   const responseIsReady = selectedQuestion && !isThinking;
+  const displayedCharacterState = isDragging ? "dragging" : characterState;
   const orderedProjects = [...projects[language]].sort(
     (firstProject, secondProject) =>
       (firstProject.priority ?? 99) - (secondProject.priority ?? 99),
@@ -524,18 +471,15 @@ function PortfolioAssistant({ language }) {
       )}
       <button
         ref={mascotRef}
-        className={`assistant-mascot assistant-mascot-${characterState}`}
+        className={`assistant-mascot assistant-mascot-${displayedCharacterState}`}
         type="button"
         onClick={handleMascotClick}
         onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={finishPointerInteraction}
-        onPointerCancel={finishPointerInteraction}
         aria-label={isOpen ? copy.closeLabel : copy.ariaLabel}
         aria-expanded={isOpen}
       >
         <span className="assistant-mascot-body">
-          <img src={characterImages[characterState] ?? characterImages.idle} alt="" aria-hidden="true" />
+          <img src={characterImages[displayedCharacterState] ?? characterImages.idle} alt="" aria-hidden="true" />
         </span>
       </button>
     </aside>
