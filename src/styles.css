@@ -554,6 +554,28 @@ h3 {
   padding: 26px;
 }
 
+.project-card-featured {
+  border-color: rgba(52, 245, 197, 0.42);
+  background:
+    radial-gradient(circle at top right, rgba(52, 245, 197, 0.13), transparent 18rem),
+    linear-gradient(145deg, rgba(36, 224, 255, 0.1), transparent 46%),
+    var(--panel-strong);
+}
+
+.project-featured-label {
+  align-self: flex-start;
+  margin: -8px 0 18px;
+  padding: 7px 10px;
+  border: 1px solid rgba(52, 245, 197, 0.28);
+  border-radius: 999px;
+  color: var(--green);
+  background: rgba(52, 245, 197, 0.08);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .project-topline {
   display: flex;
   align-items: center;

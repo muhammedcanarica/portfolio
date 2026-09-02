@@ -1,7 +1,6 @@
 const contactLinks = [
   { key: "email", href: "mailto:muhammedarica4444@gmail.com" },
   { key: "github", href: "https://github.com/muhammedcanarica" },
-  { key: "linkedin", href: "#" },
   { key: "cv", href: "/assets/muhammed-can-arica-cv.pdf" },
 ];
 
@@ -16,7 +15,7 @@ function Contact({ content }) {
           {contactLinks.map((link) => (
             <a
               className="button button-secondary"
-              key={link.label}
+              key={link.key}
               href={link.href}
               target={
                 link.href.startsWith("http") || link.href.endsWith(".pdf")

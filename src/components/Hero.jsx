@@ -6,7 +6,7 @@ function Hero({ content }) {
         <h1>{content.title}</h1>
         <p className="hero-description">{content.description}</p>
         <div className="hero-actions" aria-label="Hero actions">
-          <a className="button button-primary" href="#focus">
+          <a className="button button-primary" href="#projects">
             {content.actions.work}
           </a>
           <a className="button button-secondary" href="#about">

@@ -3,10 +3,10 @@ export const content = {
     meta: {
       title: "Can Arıca | Portfolyo",
       description:
-        "Can Arıca'nın oyun sistemleri, oynanabilir prototipler ve web araçlarına odaklanan kişisel portfolyosu.",
+        "Can Arıca'nın görüntü işleme, ağ izleme, Unity sistemleri ve etkileşimli web projelerine odaklanan kişisel portfolyosu.",
     },
     nav: [
-      { href: "#focus", label: "Çalışmalar" },
+      { href: "#projects", label: "Projeler" },
       { href: "#skills", label: "Yetenekler" },
       { href: "#about", label: "Hakkımda" },
       { href: "#contact", label: "İletişim" },
@@ -17,10 +17,10 @@ export const content = {
       en: "EN",
     },
     hero: {
-      label: "Bilgisayar Mühendisliği Öğrencisi · Unity / C# · React",
-      title: "Oynanabilir prototipler, oyun sistemleri ve temiz web araçları geliştiriyorum.",
+      label: "Bilgisayar Mühendisliği Öğrencisi · C# / .NET · Python · Unity",
+      title: "Gerçek problemleri çalışan, sürdürülebilir yazılımlara dönüştürüyorum.",
       description:
-        "Oyun geliştirme, gameplay programming ve pratik web araçlarıyla ilgilenen bir Bilgisayar Mühendisliği öğrencisiyim. Küçük fikirleri oynanabilen, test edilebilen, yayınlanabilen ve geliştirilebilen projelere dönüştürmeyi seviyorum.",
+        "Backend sistemleri, geliştirici araçları, computer vision uygulamaları ve Unity projeleri geliştiren bir Bilgisayar Mühendisliği öğrencisiyim. Fikirleri test edilebilir, sürdürülebilir ve yayınlanabilir ürünlere dönüştürmeye odaklanıyorum.",
       actions: {
         work: "Çalışmaları Gör",
         about: "Hakkımda",
@@ -28,39 +28,39 @@ export const content = {
       },
       profileTitle: "Bilgisayar Mühendisliği Öğrencisi",
       profileChips: [
+        "Python / Computer Vision",
+        ".NET / React",
         "Unity / C#",
-        "React / Vite",
-        "Gameplay Sistemleri",
-        "Web Araçları",
+        "Full-Stack Sistemler",
         "Türkiye",
       ],
     },
     focus: {
       eyebrow: "Neler Geliştiriyorum",
-      title: "Oyunlar, araçlar ve web arayüzleri üzerine küçük ama odaklı projeler.",
+      title: "Backend sistemlerinden yeniden kullanılabilir oyun araçlarına.",
       areas: [
         {
-          title: "Gameplay Sistemleri",
-          text: "Çoğunlukla Unity ve C# ile hareket, combat, etkileşim, feedback ve bölüm mekanikleri geliştiriyorum.",
+          title: "Backend ve API'ler",
+          text: ".NET ve ASP.NET Core ile REST API, kimlik doğrulama, gerçek zamanlı veri akışı ve katmanlı servisler geliştiriyorum.",
         },
         {
-          title: "Oynanabilir Prototipler",
-          text: "Küçük oyun fikirlerini net mekaniklere ve oynanabilir döngülere sahip test edilebilir prototiplere dönüştürüyorum.",
+          title: "Computer Vision",
+          text: "Python, PySide6, OpenVINO ve OCR araçlarıyla yerel çalışan masaüstü görüntü işleme uygulamaları geliştiriyorum.",
         },
         {
-          title: "Web Araçları",
-          text: "React, Vite, JavaScript, HTML ve CSS ile dashboard, arayüz ve proje araçları geliştiriyorum.",
+          title: "Unity Sistemleri",
+          text: "Unity ve C# ile gameplay sistemleri, veri odaklı prototipler ve başka projelerde kullanılabilecek araçlar geliştiriyorum.",
         },
         {
-          title: "Proje Yapısı",
-          text: "Zamanla geliştirilebilir projeler için tekrar kullanılabilir component'ler, ayrılmış sistemler ve okunabilir kod yazmaya dikkat ediyorum.",
+          title: "Full-Stack Arayüzler",
+          text: "React ve TypeScript ile backend servislerini anlaşılır, responsive ve gerçek zamanlı arayüzlere dönüştürüyorum.",
         },
       ],
     },
     projects: {
       eyebrow: "Projeler",
-      title: "Oyun prototipleri, dashboard'lar ve küçük araçlar.",
-      note: "Açıklayabildiğim, geliştirebildiğim ve üzerine ekleme yapabildiğim birkaç proje ve prototip.",
+      title: "Yayınlanan ürünlerden yeniden kullanılabilir sistemlere.",
+      note: "GitHub'daki güncel çalışmalarımdan kapsamı, teknik derinliği ve tamamlanma düzeyi en güçlü olan projeler.",
     },
     skills: {
       eyebrow: "Yetenekler",
@@ -71,22 +71,22 @@ export const content = {
           skills: ["Unity", "C#", "2D Physics", "Input System", "Cinemachine", "Tilemap"],
         },
         {
-          title: "Web Geliştirme",
-          skills: ["React", "Vite", "JavaScript", "HTML", "CSS", "Responsive Design"],
+          title: "Full-Stack Web",
+          skills: ["React", "TypeScript", "Vite", "ASP.NET Core", "SignalR", "Responsive Design"],
         },
         {
-          title: "Yazılım Mühendisliği",
+          title: "Masaüstü ve Görüntü İşleme",
           skills: [
-            "State Machines",
-            "Modüler Mimari",
-            "Component-Based Design",
-            "Git",
-            "Debugging",
+            "Python",
+            "PySide6",
+            "OpenVINO",
+            "PaddleOCR",
+            "SQLite",
           ],
         },
         {
-          title: "Donanım / Gömülü",
-          skills: ["ESP32", "device-state logic", "basit dashboard'lar"],
+          title: "Yazılım Mühendisliği",
+          skills: ["Modüler Mimari", "Test", "Git", "Debugging", "API Tasarımı"],
         },
       ],
     },
@@ -94,8 +94,8 @@ export const content = {
       eyebrow: "Hakkımda",
       title: "Can Arıca",
       paragraphs: [
-        "Ben Can, Türkiye'den bir Bilgisayar Mühendisliği öğrencisiyim. Oyun geliştirme, gameplay sistemleri ve küçük ama tamamlanmış yazılım projeleriyle ilgileniyorum.",
-        "Ana yönüm oyun geliştirme, ama web arayüzleri ve araçlar da geliştiriyorum çünkü iyi projeler sadece temel mekanikten ibaret olmuyor. Anlaşılır, tekrar kullanılabilir ve gerçek insanlara gösterilebilecek kadar temiz sistemler üzerinde çalışmayı seviyorum.",
+        "Ben Can, Türkiye'den bir Bilgisayar Mühendisliği öğrencisiyim. Masaüstü uygulamalardan full-stack web sistemlerine ve Unity projelerine uzanan, gerçek kullanım senaryosu olan yazılımlar geliştiriyorum.",
+        "Projelerimde yalnızca çalışan bir sonuç üretmeye değil; sorumlulukları ayrılmış, test edilebilir ve geliştirilebilir sistemler kurmaya önem veriyorum. Görüntü işleme, ağ araçları, procedural generation ve gameplay sistemleri bu yaklaşımı farklı alanlarda uyguladığım çalışmalar arasında.",
       ],
     },
     contact: {
@@ -105,7 +105,6 @@ export const content = {
       links: {
         email: "E-posta",
         github: "GitHub",
-        linkedin: "LinkedIn",
         cv: "CV",
       },
     },
@@ -114,10 +113,10 @@ export const content = {
     meta: {
       title: "Can Arıca | Portfolio",
       description:
-        "Personal portfolio of Can Arıca, a Computer Engineering student focused on game systems, playable prototypes, and web tools.",
+        "Personal portfolio of Can Arıca, a Computer Engineering student focused on computer vision, network monitoring, Unity systems, and interactive web projects.",
     },
     nav: [
-      { href: "#focus", label: "Work" },
+      { href: "#projects", label: "Projects" },
       { href: "#skills", label: "Skills" },
       { href: "#about", label: "About" },
       { href: "#contact", label: "Contact" },
@@ -128,10 +127,10 @@ export const content = {
       en: "EN",
     },
     hero: {
-      label: "Computer Engineering Student · Unity / C# · React",
-      title: "I build playable prototypes, game systems, and clean web tools.",
+      label: "Computer Engineering Student · C# / .NET · Python · Unity",
+      title: "I turn real problems into working, maintainable software.",
       description:
-        "I'm a Computer Engineering student interested in game development, gameplay programming, and practical web tools. I like turning small ideas into working projects that can be played, tested, published, and improved.",
+        "I'm a Computer Engineering student building backend systems, developer tools, computer vision applications, and Unity projects. I focus on turning ideas into testable, maintainable, and publishable products.",
       actions: {
         work: "View Work",
         about: "About Me",
@@ -139,39 +138,39 @@ export const content = {
       },
       profileTitle: "Computer Engineering Student",
       profileChips: [
+        "Python / Computer Vision",
+        ".NET / React",
         "Unity / C#",
-        "React / Vite",
-        "Gameplay Systems",
-        "Web Tools",
+        "Full-Stack Systems",
         "Based in Turkey",
       ],
     },
     focus: {
       eyebrow: "What I Build",
-      title: "Small, focused projects across games, tools, and web interfaces.",
+      title: "From backend systems to reusable game tools.",
       areas: [
         {
-          title: "Gameplay Systems",
-          text: "Movement, combat, interaction, feedback, and level mechanics built mostly with Unity and C#.",
+          title: "Backend and APIs",
+          text: "REST APIs, authentication, realtime data flows, and layered services built with .NET and ASP.NET Core.",
         },
         {
-          title: "Playable Prototypes",
-          text: "Small game ideas turned into testable prototypes with clear mechanics and playable loops.",
+          title: "Computer Vision",
+          text: "Local desktop computer vision applications built with Python, PySide6, OpenVINO, and OCR tooling.",
         },
         {
-          title: "Web Tools",
-          text: "Dashboards, interfaces, and project tools built with React, Vite, JavaScript, HTML, and CSS.",
+          title: "Unity Systems",
+          text: "Gameplay systems, data-driven prototypes, and reusable tools built with Unity and C#.",
         },
         {
-          title: "Project Structure",
-          text: "Reusable components, separated systems, readable code, and projects that are easier to improve over time.",
+          title: "Full-Stack Interfaces",
+          text: "Clear, responsive, and realtime interfaces connecting users to backend services with React and TypeScript.",
         },
       ],
     },
     projects: {
       eyebrow: "Projects",
-      title: "Game prototypes, dashboards, and small tools.",
-      note: "A few projects and prototypes I can explain, improve, and keep building on.",
+      title: "From released products to reusable systems.",
+      note: "The strongest projects from my current GitHub work, selected for scope, technical depth, and level of completion.",
     },
     skills: {
       eyebrow: "Skills",
@@ -182,22 +181,22 @@ export const content = {
           skills: ["Unity", "C#", "2D Physics", "Input System", "Cinemachine", "Tilemap"],
         },
         {
-          title: "Web Development",
-          skills: ["React", "Vite", "JavaScript", "HTML", "CSS", "Responsive Design"],
+          title: "Full-Stack Web",
+          skills: ["React", "TypeScript", "Vite", "ASP.NET Core", "SignalR", "Responsive Design"],
         },
         {
-          title: "Software Engineering",
+          title: "Desktop and Computer Vision",
           skills: [
-            "State Machines",
-            "Modular Architecture",
-            "Component-Based Design",
-            "Git",
-            "Debugging",
+            "Python",
+            "PySide6",
+            "OpenVINO",
+            "PaddleOCR",
+            "SQLite",
           ],
         },
         {
-          title: "Hardware / Embedded",
-          skills: ["ESP32", "device-state logic", "simple dashboards"],
+          title: "Software Engineering",
+          skills: ["Modular Architecture", "Testing", "Git", "Debugging", "API Design"],
         },
       ],
     },
@@ -205,8 +204,8 @@ export const content = {
       eyebrow: "About",
       title: "Can Arıca",
       paragraphs: [
-        "I'm Can, a Computer Engineering student from Turkey. I'm interested in game development, gameplay systems, and building small but complete software projects.",
-        "My main direction is game development, but I also build web interfaces and tools because good projects need more than just core mechanics. I like working on systems that are understandable, reusable, and polished enough to be shown to real people.",
+        "I'm Can, a Computer Engineering student from Turkey. I build software with real use cases across desktop applications, full-stack web systems, and Unity projects.",
+        "I care about more than reaching a working result: I aim for separated responsibilities, testable behavior, and systems that can keep evolving. Computer vision, network tools, procedural generation, and gameplay systems are different areas where I apply that approach.",
       ],
     },
     contact: {
@@ -216,7 +215,6 @@ export const content = {
       links: {
         email: "Email",
         github: "GitHub",
-        linkedin: "LinkedIn",
         cv: "CV",
       },
     },
