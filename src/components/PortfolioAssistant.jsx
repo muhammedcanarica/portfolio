@@ -16,7 +16,7 @@ const characterImages = {
   dragging: `${assistantAssetPath}dragging.png`,
 };
 
-const DRAG_THRESHOLD = 2;
+const DRAG_THRESHOLD = 0;
 const SAFE_MARGIN = 12;
 
 const clamp = (value, minimum, maximum) =>
@@ -259,6 +259,7 @@ function PortfolioAssistant({ language }) {
     state.lastPointerX = event.clientX;
     state.startX = state.x;
     state.startY = state.y;
+    setIsDragging(true);
   };
 
   useEffect(() => {
@@ -270,7 +271,7 @@ function PortfolioAssistant({ language }) {
 
       const offsetX = event.clientX - state.startPointerX;
       const offsetY = event.clientY - state.startPointerY;
-      if (!state.hasMoved && Math.hypot(offsetX, offsetY) < DRAG_THRESHOLD) {
+      if (!state.hasMoved && Math.hypot(offsetX, offsetY) <= DRAG_THRESHOLD) {
         return;
       }
 
@@ -299,9 +300,9 @@ function PortfolioAssistant({ language }) {
       }
 
       state.activePointerId = null;
+      setIsDragging(false);
       if (state.hasMoved) {
         suppressClick.current = true;
-        setIsDragging(false);
         savePosition();
         window.requestAnimationFrame(() => applyVisualState(drag.current));
         window.setTimeout(() => {
