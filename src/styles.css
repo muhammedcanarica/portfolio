@@ -825,31 +825,51 @@ h3 {
 /* Portfolio assistant */
 .portfolio-assistant {
   position: fixed;
-  right: 24px;
-  bottom: 20px;
+  top: 0;
+  left: 0;
   z-index: 10;
-  display: grid;
-  justify-items: end;
-  gap: 10px;
+  width: var(--assistant-mascot-size, 108px);
+  height: var(--assistant-mascot-size, 108px);
+  --assistant-mascot-size: 108px;
+  --assistant-drag-rotation: 0deg;
+  --assistant-drag-scale: 1;
+  --assistant-drag-offset-y: 0px;
+  --assistant-panel-offset-x: 0px;
+  --assistant-panel-offset-y: -360px;
 }
 
 .assistant-mascot {
-  width: 108px;
+  width: var(--assistant-mascot-size);
   min-width: 48px;
   min-height: 48px;
   padding: 0;
   border: 0;
   border-radius: 50%;
   background: transparent;
-  cursor: pointer;
+  cursor: grab;
   filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.38));
-  transition: transform 180ms ease, filter 180ms ease;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: filter 180ms ease;
 }
 
 .assistant-mascot:hover,
 .assistant-mascot:focus-visible {
   filter: drop-shadow(0 16px 32px rgba(36, 224, 255, 0.26));
-  transform: translateY(-2px) scale(1.03);
+}
+
+.assistant-dragging .assistant-mascot {
+  cursor: grabbing;
+  filter: drop-shadow(0 20px 36px rgba(36, 224, 255, 0.3));
+}
+
+.assistant-mascot-body {
+  display: block;
+  transform: translate3d(0, var(--assistant-drag-offset-y), 0)
+    rotate(var(--assistant-drag-rotation)) scale(var(--assistant-drag-scale));
+  transform-origin: 50% 18%;
+  transition: transform 220ms cubic-bezier(0.22, 0.72, 0.24, 1);
 }
 
 .assistant-mascot img {
@@ -864,11 +884,23 @@ h3 {
   transform: scale(0.98);
 }
 
+.assistant-dragging .assistant-mascot-body {
+  transition: none;
+}
+
+.assistant-dragging .assistant-mascot img {
+  animation: none;
+  transform: none;
+}
+
 .assistant-mascot-bye img {
   animation: assistant-bye 360ms ease both;
 }
 
 .assistant-tooltip {
+  position: absolute;
+  left: var(--assistant-panel-offset-x);
+  bottom: calc(var(--assistant-mascot-size) + 12px);
   max-width: 190px;
   padding: 10px 13px;
   border: 1px solid var(--line);
@@ -883,6 +915,9 @@ h3 {
 }
 
 .assistant-panel {
+  position: absolute;
+  top: var(--assistant-panel-offset-y);
+  left: var(--assistant-panel-offset-x);
   width: min(352px, calc(100vw - 48px));
   padding: 16px;
   border: 1px solid var(--line-strong);
@@ -1122,17 +1157,16 @@ h3 {
 
 @media (max-width: 720px) {
   .portfolio-assistant {
-    right: 12px;
-    bottom: 12px;
-    width: min(336px, calc(100% - 24px));
+    --assistant-mascot-size: 82px;
+    width: var(--assistant-mascot-size);
   }
 
   .assistant-mascot {
-    width: 82px;
+    width: var(--assistant-mascot-size);
   }
 
   .assistant-panel {
-    width: 100%;
+    width: min(336px, calc(100vw - 24px));
     padding: 14px;
   }
 }
@@ -1140,6 +1174,7 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   .assistant-mascot,
   .assistant-mascot img,
+  .assistant-mascot-body,
   .assistant-panel,
   .assistant-tooltip,
   .assistant-thinking i,
