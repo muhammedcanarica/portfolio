@@ -4,6 +4,7 @@ import Contact from "./components/Contact.jsx";
 import FocusAreas from "./components/FocusAreas.jsx";
 import Hero from "./components/Hero.jsx";
 import Navbar from "./components/Navbar.jsx";
+import PortfolioAssistant from "./components/PortfolioAssistant.jsx";
 import Projects from "./components/Projects.jsx";
 import Skills from "./components/Skills.jsx";
 import { content } from "./data/content.js";
@@ -38,6 +39,7 @@ function App() {
         <About content={pageContent.about} />
         <Contact content={pageContent.contact} />
       </main>
+      <PortfolioAssistant language={language} />
     </div>
   );
 }

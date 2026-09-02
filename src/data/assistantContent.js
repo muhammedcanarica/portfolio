@@ -1,0 +1,73 @@
+export const assistantContent = {
+  tr: {
+    ariaLabel: "Can'ın portfolio asistanını aç",
+    closeLabel: "Portfolio asistanını kapat",
+    heading: "Portfolio asistanı",
+    tooltip: "Bir şey mi arıyorsun?",
+    greeting: "Selam! Ben Can'ın küçük portfolio asistanıyım. Ne merak ettin?",
+    prompt: "Başka ne merak ettin?",
+    backToQuestions: "Sorulara dön",
+    thinkingLabel: "Bir saniye düşünüyorum",
+    questions: [
+      { id: "about", label: "Can kim?" },
+      { id: "builds", label: "Neler geliştiriyor?" },
+      { id: "projects", label: "Projelerini göster" },
+      { id: "technology", label: "Hangi teknolojileri kullanıyor?" },
+      { id: "cv", label: "CV" },
+      { id: "contact", label: "İletişim" },
+    ],
+    answers: {
+      builds: "Can; backend sistemleri, bilgisayarlı görü uygulamaları, Unity projeleri ve full-stack arayüzler geliştiriyor.",
+      projects:
+        "Öne çıkan birkaç proje aşağıda. İstersen proje bölümünden hepsini inceleyebilirsin.",
+      technology:
+        "Çalışmalarını bu dört ana alanda topluyor:",
+      cv: "CV'yi yeni sekmede açabilirsin.",
+      contact: "Birlikte çalışmak ya da bir fikir paylaşmak istersen Can'a bu kanallardan ulaşabilirsin.",
+    },
+    actions: {
+      about: "Hakkımda bölümüne git",
+      projects: "Tüm projelere git",
+      skills: "Yeteneklere git",
+      email: "E-posta",
+      github: "GitHub",
+      contact: "İletişim bölümüne git",
+      cv: "CV'yi aç",
+    },
+  },
+  en: {
+    ariaLabel: "Open Can's portfolio assistant",
+    closeLabel: "Close portfolio assistant",
+    heading: "Portfolio assistant",
+    tooltip: "Looking for something?",
+    greeting: "Hi! I'm Can's little portfolio assistant. What would you like to know?",
+    prompt: "What else would you like to know?",
+    backToQuestions: "Back to questions",
+    thinkingLabel: "Thinking for a moment",
+    questions: [
+      { id: "about", label: "Who is Can?" },
+      { id: "builds", label: "What does he build?" },
+      { id: "projects", label: "Show projects" },
+      { id: "technology", label: "What technologies does he use?" },
+      { id: "cv", label: "CV" },
+      { id: "contact", label: "Contact" },
+    ],
+    answers: {
+      builds: "Can builds backend systems, computer vision applications, Unity projects, and full-stack interfaces.",
+      projects:
+        "Here are a few featured projects. You can explore the full project section whenever you like.",
+      technology: "His work spans these four main areas:",
+      cv: "You can open the CV in a new tab.",
+      contact: "If you'd like to work together or share an idea, you can reach Can through these channels.",
+    },
+    actions: {
+      about: "Go to About",
+      projects: "View all projects",
+      skills: "Go to skills",
+      email: "Email",
+      github: "GitHub",
+      contact: "Go to contact",
+      cv: "Open CV",
+    },
+  },
+};
