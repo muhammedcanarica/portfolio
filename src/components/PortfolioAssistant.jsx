@@ -6,7 +6,7 @@ import { projects } from "../data/projects.js";
 import "./PortfolioAssistant.css";
 
 const assistantAssetPath = `${import.meta.env.BASE_URL}assets/chatbot/`;
-const cvLink = contactLinks.find((link) => link.key === "cv");
+const cvLinks = contactLinks.filter((link) => link.key.startsWith("cv"));
 
 const characterImages = {
   idle: `${assistantAssetPath}idle.png`,
@@ -433,9 +433,19 @@ function PortfolioAssistant({ language }) {
       return (
         <>
           <p>{copy.answers.cv}</p>
-          <a className="assistant-action" href={cvLink.href} target="_blank" rel="noreferrer" onClick={handleLinkAction}>
-            {copy.actions.cv}
-          </a>
+          <div className="assistant-contact-actions">
+            {cvLinks.map((link) => (
+              <a
+                key={link.key}
+                className="assistant-action"
+                href={link.href}
+                download={link.download}
+                onClick={handleLinkAction}
+              >
+                {copy.actions[link.key]}
+              </a>
+            ))}
+          </div>
         </>
       );
     }

@@ -22,7 +22,7 @@ export const assistantContent = {
         "Öne çıkan birkaç proje aşağıda. İstersen proje bölümünden hepsini inceleyebilirsin.",
       technology:
         "Projelerinde kullandığı başlıca teknolojiler:",
-      cv: "CV'yi yeni sekmede açabilirsin.",
+      cv: "CV'yi Türkçe veya İngilizce olarak indirebilirsin.",
       contact: "Birlikte çalışmak ya da bir fikir paylaşmak istersen Can'a bu kanallardan ulaşabilirsin.",
     },
     actions: {
@@ -32,7 +32,8 @@ export const assistantContent = {
       email: "E-posta",
       github: "GitHub",
       contact: "İletişim bölümüne git",
-      cv: "CV'yi aç",
+      cvTr: "Türkçe CV",
+      cvEn: "English CV",
     },
   },
   en: {
@@ -57,7 +58,7 @@ export const assistantContent = {
       projects:
         "Here are a few featured projects. You can explore the full project section whenever you like.",
       technology: "The main technologies he uses in his projects:",
-      cv: "You can open the CV in a new tab.",
+      cv: "You can download the CV in Turkish or English.",
       contact: "If you'd like to work together or share an idea, you can reach Can through these channels.",
     },
     actions: {
@@ -67,7 +68,8 @@ export const assistantContent = {
       email: "Email",
       github: "GitHub",
       contact: "Go to contact",
-      cv: "Open CV",
+      cvTr: "Turkish CV",
+      cvEn: "English CV",
     },
   },
 };
