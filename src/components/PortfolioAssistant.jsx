@@ -3,8 +3,10 @@ import { assistantContent } from "../data/assistantContent.js";
 import { contactLinks } from "../data/contactLinks.js";
 import { content } from "../data/content.js";
 import { projects } from "../data/projects.js";
+import "./PortfolioAssistant.css";
 
 const assistantAssetPath = `${import.meta.env.BASE_URL}assets/chatbot/`;
+const cvLink = contactLinks.find((link) => link.key === "cv");
 
 const characterImages = {
   idle: `${assistantAssetPath}idle.png`,
@@ -29,6 +31,9 @@ function PortfolioAssistant({ language }) {
   const assistantRef = useRef(null);
   const mascotRef = useRef(null);
   const panelRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const messageRef = useRef(null);
+  const optionsRef = useRef(null);
   const suppressClick = useRef(false);
   const drag = useRef({
     activePointerId: null,
@@ -191,10 +196,29 @@ function PortfolioAssistant({ language }) {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
+  }, [isOpen, isClosing]);
 
   useLayoutEffect(() => {
     applyVisualState(drag.current);
+  }, [isOpen, language, selectedQuestion, characterState]);
+
+  useLayoutEffect(() => {
+    if (selectedQuestion) {
+      messageRef.current?.focus({ preventScroll: true });
+    }
+  }, [selectedQuestion]);
+
+  useEffect(() => {
+    if (!isOpen || !panelRef.current) {
+      return undefined;
+    }
+
+    closeButtonRef.current?.focus({ preventScroll: true });
+    const observer = new ResizeObserver(() => {
+      updatePanelPosition(drag.current.x, drag.current.y);
+    });
+    observer.observe(panelRef.current);
+    return () => observer.disconnect();
   }, [isOpen]);
 
   const openAssistant = () => {
@@ -212,6 +236,7 @@ function PortfolioAssistant({ language }) {
     }
 
     clearTimers();
+    mascotRef.current?.focus({ preventScroll: true });
     setIsClosing(true);
     setCharacterState("bye");
     schedule(() => {
@@ -223,6 +248,10 @@ function PortfolioAssistant({ language }) {
   };
 
   const selectQuestion = (questionId) => {
+    if (isClosing) {
+      return;
+    }
+
     clearTimers();
     setSelectedQuestion(questionId);
     setCharacterState("thinking");
@@ -230,14 +259,21 @@ function PortfolioAssistant({ language }) {
   };
 
   const returnToQuestions = () => {
+    if (isClosing) {
+      return;
+    }
+
     clearTimers();
     setSelectedQuestion(null);
     setCharacterState("greeting");
+    schedule(() => optionsRef.current?.querySelector("button")?.focus({ preventScroll: true }), 0);
   };
 
   const handleSectionAction = (sectionId) => {
     setCharacterState("happy");
-    document.querySelector(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    document.querySelector(sectionId)?.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+    });
     schedule(() => setCharacterState("talking"), 650);
   };
 
@@ -382,8 +418,8 @@ function PortfolioAssistant({ language }) {
         <>
           <p>{copy.answers.technology}</p>
           <ul className="assistant-area-list">
-            {siteContent.focus.areas.map((area) => (
-              <li key={area.title}>{area.title}</li>
+            {siteContent.skills.items.map((technology) => (
+              <li key={technology}>{technology}</li>
             ))}
           </ul>
           <button className="assistant-action" type="button" onClick={() => handleSectionAction("#skills")}>
@@ -397,7 +433,7 @@ function PortfolioAssistant({ language }) {
       return (
         <>
           <p>{copy.answers.cv}</p>
-          <a className="assistant-action" href="/assets/muhammed-can-arica-cv.pdf" target="_blank" rel="noreferrer" onClick={handleLinkAction}>
+          <a className="assistant-action" href={cvLink.href} target="_blank" rel="noreferrer" onClick={handleLinkAction}>
             {copy.actions.cv}
           </a>
         </>
@@ -435,16 +471,18 @@ function PortfolioAssistant({ language }) {
       {isOpen && (
         <section
           ref={panelRef}
+          id="portfolio-assistant-panel"
           className={`assistant-panel${isClosing ? " assistant-panel-closing" : ""}`}
-          aria-live="polite"
+          role="dialog"
+          aria-labelledby="portfolio-assistant-heading"
         >
           <header className="assistant-header">
-            <span>{copy.heading}</span>
-            <button type="button" onClick={closeAssistant} aria-label={copy.closeLabel}>
+            <span id="portfolio-assistant-heading">{copy.heading}</span>
+            <button ref={closeButtonRef} type="button" onClick={closeAssistant} aria-label={copy.closeLabel}>
               <span aria-hidden="true">×</span>
             </button>
           </header>
-          <div className="assistant-message">
+          <div ref={messageRef} className="assistant-message" tabIndex={-1} aria-live="polite" aria-atomic="true">
             {!selectedQuestion && <p>{copy.greeting}</p>}
             {isThinking && (
               <p className="assistant-thinking">
@@ -455,7 +493,7 @@ function PortfolioAssistant({ language }) {
             {renderResponse()}
           </div>
           {!selectedQuestion ? (
-            <div className="assistant-options">
+            <div ref={optionsRef} className="assistant-options">
               {copy.questions.map((question) => (
                 <button key={question.id} className="assistant-option" type="button" onClick={() => selectQuestion(question.id)}>
                   {question.label}
@@ -478,6 +516,7 @@ function PortfolioAssistant({ language }) {
         onPointerDown={handlePointerDown}
         aria-label={isOpen ? copy.closeLabel : copy.ariaLabel}
         aria-expanded={isOpen}
+        aria-controls={isOpen ? "portfolio-assistant-panel" : undefined}
       >
         <span className="assistant-mascot-body">
           <img src={characterImages[displayedCharacterState] ?? characterImages.idle} alt="" aria-hidden="true" />

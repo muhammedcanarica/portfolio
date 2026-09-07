@@ -21,7 +21,7 @@ export const assistantContent = {
       projects:
         "Öne çıkan birkaç proje aşağıda. İstersen proje bölümünden hepsini inceleyebilirsin.",
       technology:
-        "Çalışmalarını bu dört ana alanda topluyor:",
+        "Projelerinde kullandığı başlıca teknolojiler:",
       cv: "CV'yi yeni sekmede açabilirsin.",
       contact: "Birlikte çalışmak ya da bir fikir paylaşmak istersen Can'a bu kanallardan ulaşabilirsin.",
     },
@@ -56,7 +56,7 @@ export const assistantContent = {
       builds: "Can builds backend systems, computer vision applications, Unity projects, and full-stack interfaces.",
       projects:
         "Here are a few featured projects. You can explore the full project section whenever you like.",
-      technology: "His work spans these four main areas:",
+      technology: "The main technologies he uses in his projects:",
       cv: "You can open the CV in a new tab.",
       contact: "If you'd like to work together or share an idea, you can reach Can through these channels.",
     },

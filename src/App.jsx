@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import About from "./components/About.jsx";
 import Contact from "./components/Contact.jsx";
-import FocusAreas from "./components/FocusAreas.jsx";
 import Hero from "./components/Hero.jsx";
 import Navbar from "./components/Navbar.jsx";
 import PortfolioAssistant from "./components/PortfolioAssistant.jsx";
@@ -22,23 +21,21 @@ function App() {
 
   return (
     <div className="app">
-      <div className="ambient ambient-one" />
-      <div className="ambient ambient-two" />
-      <div className="grid-pattern" />
+      <a className="skip-link" href="#main-content">{pageContent.skipLink}</a>
       <Navbar
         language={language}
         navLinks={pageContent.nav}
         toggleLabels={pageContent.languageToggle}
+        labels={pageContent.navigation}
         onLanguageChange={setLanguage}
       />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Hero content={pageContent.hero} />
-        <FocusAreas content={pageContent.focus} />
         <Projects content={pageContent.projects} language={language} />
-        <Skills content={pageContent.skills} />
         <About content={pageContent.about} />
-        <Contact content={pageContent.contact} />
+        <Skills content={pageContent.skills} />
       </main>
+      <Contact content={pageContent.contact} />
       <PortfolioAssistant language={language} />
     </div>
   );

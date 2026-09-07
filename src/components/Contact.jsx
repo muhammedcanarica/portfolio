@@ -2,34 +2,32 @@ import { contactLinks } from "../data/contactLinks.js";
 
 function Contact({ content }) {
   return (
-    <section className="section contact-section" id="contact">
-      <div className="glass-card contact-card">
-        <p className="eyebrow">{content.eyebrow}</p>
-        <h2>{content.title}</h2>
-        <p className="contact-detail">muhammedarica4444@gmail.com</p>
-        <div className="contact-links" aria-label="Contact links">
-          {contactLinks.map((link) => (
-            <a
-              className="button button-secondary"
-              key={link.key}
-              href={link.href}
-              target={
-                link.href.startsWith("http") || link.href.endsWith(".pdf")
-                  ? "_blank"
-                  : undefined
-              }
-              rel={
-                link.href.startsWith("http") || link.href.endsWith(".pdf")
-                  ? "noreferrer"
-                  : undefined
-              }
-            >
-              {content.links[link.key]}
-            </a>
-          ))}
+    <footer className="section contact-section" id="contact" aria-labelledby="contact-title">
+      <p className="eyebrow">{content.eyebrow}</p>
+      <div className="contact-body">
+        <div>
+          <h2 id="contact-title">{content.title}</h2>
+          <p className="contact-description">{content.description}</p>
+        </div>
+        <div className="contact-links">
+          {contactLinks.map((link) => {
+            const opensTab = link.href.startsWith("http") || link.href.endsWith(".pdf");
+            return (
+              <a className="text-link" key={link.key} href={link.href}
+                target={opensTab ? "_blank" : undefined}
+                rel={opensTab ? "noreferrer" : undefined}>
+                <span>{link.key === "email" ? link.href.replace("mailto:", "") : content.links[link.key]}</span>
+                <span className="link-arrow" aria-hidden="true">↗</span>
+              </a>
+            );
+          })}
         </div>
       </div>
-    </section>
+      <div className="footer-bottom metadata">
+        <span>© {new Date().getFullYear()} {content.credit}</span>
+        <a className="text-link" href="#top">{content.backToTop}<span aria-hidden="true">↑</span></a>
+      </div>
+    </footer>
   );
 }
 
