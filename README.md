@@ -1,6 +1,6 @@
-# Can Arıca Portfolio
+# Muhammed Can Arıca Portfolio
 
-Can Arıca'nın seçilmiş yazılım ve oyun projelerini sunan, Türkçe ve İngilizce kişisel portfolyosu.
+Muhammed Can Arıca'nın seçilmiş yazılım ve oyun projelerini sunan, Türkçe ve İngilizce kişisel portfolyosu.
 
 [Canlı site](https://muhammedcanarica.github.io/portfolio/) · [GitHub profili](https://github.com/muhammedcanarica)
 
@@ -39,7 +39,7 @@ Yazılı içerikler `src/data/content.js`, proje bilgileri `src/data/projects.js
 
 ## English
 
-A bilingual personal portfolio presenting selected software and game projects by Can Arıca.
+A bilingual personal portfolio presenting selected software and game projects by Muhammed Can Arıca.
 
 [Live site](https://muhammedcanarica.github.io/portfolio/) · [GitHub profile](https://github.com/muhammedcanarica)
 

@@ -2,7 +2,7 @@ function Navbar({ language, navLinks, toggleLabels, labels, onLanguageChange }) 
   return (
     <header className="navbar">
       <a className="brand" href="#top" aria-label={labels.home}>
-        can arıca<span aria-hidden="true">.</span>
+        muhammed can arıca<span aria-hidden="true">.</span>
       </a>
       <nav className="nav-links" aria-label={labels.label}>
         {navLinks.map((link) => (
