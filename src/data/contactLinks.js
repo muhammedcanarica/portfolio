@@ -3,12 +3,10 @@ export const contactLinks = [
   { key: "github", href: "https://github.com/muhammedcanarica" },
   {
     key: "cvTr",
-    href: `${import.meta.env.BASE_URL}assets/muhammed-can-arica-cv-tr.docx`,
-    download: "Muhammed_Can_Arica_CV_TR.docx",
+    href: `${import.meta.env.BASE_URL}assets/muhammed-can-arica-cv-tr.pdf`,
   },
   {
     key: "cvEn",
-    href: `${import.meta.env.BASE_URL}assets/muhammed-can-arica-cv-en.docx`,
-    download: "Muhammed_Can_Arica_CV_EN.docx",
+    href: `${import.meta.env.BASE_URL}assets/muhammed-can-arica-cv-en.pdf`,
   },
 ];

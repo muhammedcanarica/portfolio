@@ -439,7 +439,8 @@ function PortfolioAssistant({ language }) {
                 key={link.key}
                 className="assistant-action"
                 href={link.href}
-                download={link.download}
+                target="_blank"
+                rel="noreferrer"
                 onClick={handleLinkAction}
               >
                 {copy.actions[link.key]}

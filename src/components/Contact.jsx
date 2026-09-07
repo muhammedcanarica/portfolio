@@ -11,12 +11,11 @@ function Contact({ content }) {
         </div>
         <div className="contact-links">
           {contactLinks.map((link) => {
-            const opensTab = link.href.startsWith("http");
+            const opensTab = link.href.startsWith("http") || link.href.endsWith(".pdf");
             return (
               <a className="text-link" key={link.key} href={link.href}
                 target={opensTab ? "_blank" : undefined}
-                rel={opensTab ? "noreferrer" : undefined}
-                download={link.download}>
+                rel={opensTab ? "noreferrer" : undefined}>
                 <span>{link.key === "email" ? link.href.replace("mailto:", "") : content.links[link.key]}</span>
                 <span className="link-arrow" aria-hidden="true">↗</span>
               </a>

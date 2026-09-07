@@ -22,7 +22,7 @@ export const assistantContent = {
         "Öne çıkan birkaç proje aşağıda. İstersen proje bölümünden hepsini inceleyebilirsin.",
       technology:
         "Projelerinde kullandığı başlıca teknolojiler:",
-      cv: "CV'yi Türkçe veya İngilizce olarak indirebilirsin.",
+      cv: "CV'yi Türkçe veya İngilizce olarak yeni sekmede açabilirsin.",
       contact: "Birlikte çalışmak ya da bir fikir paylaşmak istersen Can'a bu kanallardan ulaşabilirsin.",
     },
     actions: {
@@ -58,7 +58,7 @@ export const assistantContent = {
       projects:
         "Here are a few featured projects. You can explore the full project section whenever you like.",
       technology: "The main technologies he uses in his projects:",
-      cv: "You can download the CV in Turkish or English.",
+      cv: "You can open the CV in Turkish or English in a new tab.",
       contact: "If you'd like to work together or share an idea, you can reach Can through these channels.",
     },
     actions: {
